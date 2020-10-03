@@ -8,7 +8,7 @@ import(
 )
 
 func RunPermutations(target string) {
-		sanitizedDomain, tld ,sub := processInput(target)
+		sanitizedDomain, tld ,sub := ProcessInput(target)
 		printReport(additionAttack(sub),sanitizedDomain, tld)
 		printReport( omissionAttack(sub),sanitizedDomain, tld)
 		printReport( homographAttack(sub),sanitizedDomain, tld)
@@ -36,7 +36,7 @@ func countChar(word string) map[rune]int {
 	return count
 }
 //Return the domain,tld, subdomain
-func processInput(input string) (sanitizedDomain, tld string, sub string) {
+func ProcessInput(input string) (sanitizedDomain, tld string, sub string) {
 		tldPlusOne, _ := publicsuffix.EffectiveTLDPlusOne(input)
 		tld, _ = publicsuffix.PublicSuffix(tldPlusOne)
 		sanitizedDomain = strings.Replace(tldPlusOne, "."+tld, "", -1)
